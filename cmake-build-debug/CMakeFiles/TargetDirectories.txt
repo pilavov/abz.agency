@@ -1,0 +1,3 @@
+/home/kpilavov/CLionProjects/abz.agency/cmake-build-debug/CMakeFiles/abz_agency.dir
+/home/kpilavov/CLionProjects/abz.agency/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/kpilavov/CLionProjects/abz.agency/cmake-build-debug/CMakeFiles/rebuild_cache.dir
