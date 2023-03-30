@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include "Api.h"
+#include "UserBuilder.h"
 
 
 Api::Api() : m_linkToNextUserPage(FIRST_6_USERS_LINK){
@@ -29,14 +30,13 @@ size_t Api::writeCallback(char *contents, size_t size, size_t nmemb, void *userp
 }
 
 
-json Api::get6Users(){
+void Api::get6Users(){
     CURLcode res;
     std::string response;
     json result;
 
     sendRequest(res, response, m_linkToNextUserPage);
 
-    // Print the API response
     result = json::parse(response);
 
     if ( result["links"]["next_url"] == nullptr )
@@ -44,8 +44,7 @@ json Api::get6Users(){
     else
         m_linkToNextUserPage = result["links"]["next_url"];
 
-
-    return result;
+    parseGetUsersResponse(result);
 }
 
 
@@ -54,7 +53,7 @@ Api::~Api() {
     curl_easy_cleanup(m_curl);
 }
 
-void Api::sendRequest(CURLcode& res, std::string& response, const std::string requestLink) const{
+void Api::sendRequest(CURLcode& res, std::string& response, const std::string& requestLink) const{
     // Use a lambda function to set CURLOPT_URL
     auto setUrlLambda = [](CURL* curl, const std::string& url) -> CURLcode {
         return curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
@@ -104,4 +103,22 @@ std::vector<std::string> Api::getPositions() const{
     }
 
     return positions;
+}
+
+void Api::parseGetUsersResponse(const json &j) const {
+    for (auto& user : j["users"])
+    {
+        addClientToUi(UserBuilder()
+                                  .setName(user["name"])
+                                  .setEmail(user["email"])
+                                  .setPosition(user["position"])
+                                  .setPhoneNumber(user["phone"])
+                                  .build());
+    }
+
+}
+
+void Api::addClientToUi(const User &user) const {
+//    std::cout << user.getName() << std::endl;
+    // add client to UI
 }

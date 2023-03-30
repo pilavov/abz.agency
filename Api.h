@@ -10,6 +10,7 @@
 #include <curl/curl.h>
 #include <string>
 #include <nlohmann/json.hpp>
+#include "User.h"
 
 using json = nlohmann::json;
 
@@ -20,12 +21,14 @@ private:
     CURL* m_curl;
 
     static size_t writeCallback(char* contents, size_t size, size_t nmemb, void* userp);
-    void sendRequest(CURLcode& res, std::string& response, const std::string requestLink) const;
+    void sendRequest(CURLcode& res, std::string& response, const std::string& requestLink) const;
+    void parseGetUsersResponse(const json& j) const;
+    void addClientToUi(const User& user) const;
 public:
     Api();
     ~Api();
 
-    json get6Users() ;
+    void get6Users() ;
     std::vector<std::string> getPositions() const;
     std::string getToken() const;
 

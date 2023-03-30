@@ -5,10 +5,10 @@
 
 int main() {
     Api obj;
-
-    std::cout << std::setw(4) << obj.get6Users() << std::endl;
-    std::cout << std::setw(4) << obj.get6Users() << std::endl;
-    std::cout << std::setw(4) << obj.get6Users() << std::endl;
+    obj.get6Users();
+//    std::cout << std::setw(4) << obj.get6Users() << std::endl;
+//    std::cout << std::setw(4) << obj.get6Users() << std::endl;
+//    std::cout << std::setw(4) << obj.get6Users() << std::endl;
 
     User user2 = UserBuilder()
             .setName("Jane Doe")
