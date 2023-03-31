@@ -1,7 +1,3 @@
-//
-// Created by kpilavov on 30.03.23.
-//
-
 #include "UserBuilder.h"
 
 UserBuilder &UserBuilder::setName(const std::string& name) {

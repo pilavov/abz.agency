@@ -1,7 +1,3 @@
-//
-// Created by kpilavov on 30.03.23.
-//
-
 #include "User.h"
 
 std::string User::getName() const {

@@ -1,7 +1,3 @@
-//
-// Created by kpilavov on 30.03.23.
-//
-
 #ifndef ABZ_AGENCY_USER_H
 #define ABZ_AGENCY_USER_H
 

@@ -1,7 +1,3 @@
-//
-// Created by kpilavov on 30.03.23.
-//
-
 #ifndef ABZ_AGENCY_API_H
 #define ABZ_AGENCY_API_H
 
@@ -18,20 +14,30 @@ using json = nlohmann::json;
 class Api {
 private:
     std::string m_linkToNextUserPage;
+    std::string m_linkToPrevUserPage;
     CURL* m_curl;
 
     static size_t writeCallback(char* contents, size_t size, size_t nmemb, void* userp);
     void sendRequest(CURLcode& res, std::string& response, const std::string& requestLink) const;
-    void parseGetUsersResponse(const json& j) const;
-    void addClientToUi(const User& user) const;
+    std::vector<User> parseGetUsersResponse(const json& j) const;
 public:
     Api();
     ~Api();
 
-    void get6Users() ;
+    void sendForm(CURLcode& res,
+                   std::string& response,
+                   const std::string& token,
+                   const std::string& photoPath,
+                   const std::string& name,
+                   const std::string& email,
+                   const std::string& phone,
+                   const std::string& positionId) const ;
+
+    std::vector<User> get6Users(bool toNextPage) ;
     std::vector<std::string> getPositions() const;
     std::string getToken() const;
-
+    bool isThereNextPage() const;
+    bool isTherePrevPage() const;
 };
 
 

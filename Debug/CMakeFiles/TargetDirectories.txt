@@ -1,0 +1,4 @@
+/home/kpilavov/QtProjects/abz_agency/Debug/CMakeFiles/abz_agency.dir
+/home/kpilavov/QtProjects/abz_agency/Debug/CMakeFiles/edit_cache.dir
+/home/kpilavov/QtProjects/abz_agency/Debug/CMakeFiles/rebuild_cache.dir
+/home/kpilavov/QtProjects/abz_agency/Debug/CMakeFiles/abz_agency_autogen.dir
