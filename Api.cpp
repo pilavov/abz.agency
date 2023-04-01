@@ -9,13 +9,7 @@
 #include <QDebug>
 
 Api::Api() : m_linkToNextUserPage(FIRST_6_USERS_LINK), m_linkToPrevUserPage(""){
-    m_curl = curl_easy_init();
-    if (!m_curl) {
-        std::cerr << "Error: Curl failed to initialize" << std::endl;
-        exit(1);
-    }
-
-    curl_easy_setopt(m_curl, CURLOPT_WRITEFUNCTION, Api::writeCallback);
+    curlSetup();
 }
 
 
@@ -110,7 +104,8 @@ void Api::sendForm(CURLcode &res, std::string &response, const std::string &toke
        }
 }
 
-void Api::sendRequest(CURLcode& res, std::string& response, const std::string& requestLink) const{
+void Api::sendRequest(CURLcode& res, std::string& response, const std::string& requestLink) {
+    curlSetup();
     // Use a lambda function to set CURLOPT_URL
     auto setUrlLambda = [](CURL* curl, const std::string& url) -> CURLcode {
         return curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
@@ -129,7 +124,7 @@ void Api::sendRequest(CURLcode& res, std::string& response, const std::string& r
     }
 }
 
-std::string Api::getToken() const {
+std::string Api::getToken()  {
     CURLcode res;
     std::string response;
     json result;
@@ -153,7 +148,13 @@ bool Api::isTherePrevPage() const
     return m_linkToPrevUserPage != "";
 }
 
-std::vector<std::string> Api::getPositions() const{
+void Api::resetAPI()
+{
+    m_linkToNextUserPage = FIRST_6_USERS_LINK;
+    m_linkToPrevUserPage = "";
+}
+
+std::vector<std::string> Api::getPositions() {
     CURLcode res;
     std::string response;
     json result;
@@ -185,5 +186,16 @@ std::vector<User> Api::parseGetUsersResponse(const json &j) const {
     }
     return result;
 
+}
+
+void Api::curlSetup()
+{
+    m_curl = curl_easy_init();
+    if (!m_curl) {
+        std::cerr << "Error: Curl failed to initialize" << std::endl;
+        exit(1);
+    }
+
+    curl_easy_setopt(m_curl, CURLOPT_WRITEFUNCTION, Api::writeCallback);
 }
 

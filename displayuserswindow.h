@@ -29,6 +29,10 @@ private slots:
 
     void on_choosePictureBtn_clicked();
 
+    void on_showUsersBtn_clicked();
+
+    void on_addOnMoreUser_clicked();
+
 private:
     int chosenPositionRadioBtn;
     Ui::DisplayUsersWindow *ui;
@@ -52,5 +56,8 @@ private:
 
     bool checkValidators();
     bool checkPhoto();
+
+    void clearFormFields();
+    void hideOrShowFormFields(bool show);
 };
 #endif // DISPLAYUSERSWINDOW_H

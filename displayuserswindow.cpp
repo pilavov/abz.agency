@@ -19,6 +19,7 @@ DisplayUsersWindow::DisplayUsersWindow(QWidget *parent)
     setPositionBtn();
     setInputValidators();
     updateUsers(true);
+    hideOrShowFormFields(true);
 }
 
 DisplayUsersWindow::~DisplayUsersWindow()
@@ -67,7 +68,7 @@ bool DisplayUsersWindow::checkValidators()
     int pos = 0;
     QValidator::State state = m_usernameValidator->validate(currentInputToCheck, pos);
     if (state != QValidator::Acceptable) {
-        QMessageBox::critical(this, "Error", "Invalid NAME input. Please try again.");
+        QMessageBox::critical(this, "Error", "The name must be at least 2 characters.");
 
         return false;
     }
@@ -76,7 +77,7 @@ bool DisplayUsersWindow::checkValidators()
     pos = 0;
     state = m_emailValidator->validate(currentInputToCheck, pos);
     if (state != QValidator::Acceptable) {
-        QMessageBox::critical(this, "Error", "Invalid EMAIL input. Please try again.");
+        QMessageBox::critical(this, "Error", "The email must be a valid email address.");
         return false;
     }
 
@@ -84,7 +85,7 @@ bool DisplayUsersWindow::checkValidators()
     pos = 0;
     state = m_phoneValidator->validate(currentInputToCheck, pos);
     if (state != QValidator::Acceptable) {
-        QMessageBox::critical(this, "Error", "Invalid PHONE NUMBER input. Please try again.");
+        QMessageBox::critical(this, "Error", "The phone field is required.");
         return false;
     }
 
@@ -100,7 +101,7 @@ bool DisplayUsersWindow::checkValidators()
     }
     if (posIndex < 0)
     {
-        QMessageBox::critical(this, "Error", "You have not chosen a position. Please try again.");
+        QMessageBox::critical(this, "Error", "The position field is required");
         return false;
     }
 
@@ -111,10 +112,51 @@ bool DisplayUsersWindow::checkPhoto()
 {
     if(ui->chosenPicture->text().isEmpty())
     {
-        QMessageBox::critical(this, "Error", "You have not chosen a photo. Please try again.");
+        QMessageBox::critical(this, "Error", "The photo field is required.");
         return false;
     }
     return true;
+}
+
+
+
+void DisplayUsersWindow::clearFormFields()
+{
+    ui->nameInput->clear();
+    ui->phoneInput->clear();
+    ui->emailInput->clear();
+    ui->chosenPicture->clear();
+
+    for (auto item : m_positionsBtns)
+        item->setChecked(false);
+}
+
+void DisplayUsersWindow::hideOrShowFormFields(bool show)
+{
+    ui->addUserLabel->setVisible(show);
+    ui->label->setVisible(show);
+    ui->label_3->setVisible(show);
+    ui->label_2->setVisible(show);
+    ui->label_7->setVisible(show);
+    ui->label_9->setVisible(show);
+    ui->choosePictureBtn->setVisible(show);
+    ui->chosenPicture->setVisible(show);
+    ui->nameInput->setVisible(show);
+    ui->emailInput->setVisible(show);
+    ui->phoneInput->setVisible(show);
+    ui->addUserBrn->setVisible(show);
+
+    for (auto item : m_positionsBtns)
+        item->setVisible(show);
+
+
+
+    ui->successfullyAdded->setVisible(!show);
+    ui->addOnMoreUser->setVisible(!show);
+    ui->showUsersBtn->setVisible(!show);
+
+
+
 }
 
 void DisplayUsersWindow::on_prev_page_btn_2_clicked()
@@ -214,10 +256,21 @@ void DisplayUsersWindow::on_addUserBrn_clicked()
                        std::to_string(chosenPositionRadioBtn)
                        );
 
-        qDebug() << QString::fromStdString(response);
-        //"{\"success\":false,\"message\":\"Invalid token. Try to get a new one by the method GET api\\/v1\\/token.\"}"
-        //"{\"success\":true,\"user_id\":13328,\"message\":\"New user successfully registered\"}"
-        //{  "success": false,   "message": "User with this phone or email already exist"}
+
+        result = json::parse(response);
+
+        if (result["success"] )
+        {
+            hideOrShowFormFields(false);
+            clearFormFields();
+            m_api.resetAPI();
+            updateUsers(true);
+        }
+        else
+        {
+            QMessageBox::critical(this, "Error", QString::fromStdString(result["message"]));
+        }
+
     }
 }
 
@@ -242,4 +295,15 @@ void DisplayUsersWindow::on_choosePictureBtn_clicked()
         }
     }
 
+}
+
+void DisplayUsersWindow::on_showUsersBtn_clicked()
+{
+    hideOrShowFormFields(true);
+    ui->tabWidget->setCurrentIndex(0);
+}
+
+void DisplayUsersWindow::on_addOnMoreUser_clicked()
+{
+    hideOrShowFormFields(true);
 }

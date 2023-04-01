@@ -18,8 +18,10 @@ private:
     CURL* m_curl;
 
     static size_t writeCallback(char* contents, size_t size, size_t nmemb, void* userp);
-    void sendRequest(CURLcode& res, std::string& response, const std::string& requestLink) const;
+    void sendRequest(CURLcode& res, std::string& response, const std::string& requestLink) ;
     std::vector<User> parseGetUsersResponse(const json& j) const;
+    void curlSetup();
+
 public:
     Api();
     ~Api();
@@ -34,10 +36,12 @@ public:
                    const std::string& positionId) const ;
 
     std::vector<User> get6Users(bool toNextPage) ;
-    std::vector<std::string> getPositions() const;
-    std::string getToken() const;
+    std::vector<std::string> getPositions() ;
+    std::string getToken() ;
     bool isThereNextPage() const;
     bool isTherePrevPage() const;
+
+    void resetAPI();
 };
 
 

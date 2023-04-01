@@ -88,7 +88,7 @@ public:
     QLabel *label_25;
     QWidget *tab_2;
     QWidget *formLayoutWidget_2;
-    QFormLayout *formLayout_4;
+    QFormLayout *formLayout;
     QHBoxLayout *horizontalLayout_25;
     QLabel *label_3;
     QSpacerItem *horizontalSpacer_6;
@@ -108,12 +108,21 @@ public:
     QHBoxLayout *horizontalLayout_38;
     QLabel *label_9;
     QSpacerItem *horizontalSpacer_18;
-    QSpacerItem *verticalSpacer;
-    QPushButton *addUserBrn;
     QHBoxLayout *horizontalLayout_39;
     QPushButton *choosePictureBtn;
     QLabel *chosenPicture;
-    QLabel *label_10;
+    QSpacerItem *verticalSpacer;
+    QPushButton *addUserBrn;
+    QSpacerItem *verticalSpacer_2;
+    QSpacerItem *verticalSpacer_3;
+    QHBoxLayout *horizontalLayout_2;
+    QSpacerItem *horizontalSpacer_3;
+    QLabel *successfullyAdded;
+    QSpacerItem *horizontalSpacer;
+    QHBoxLayout *horizontalLayout;
+    QPushButton *showUsersBtn;
+    QPushButton *addOnMoreUser;
+    QLabel *addUserLabel;
 
     void setupUi(QMainWindow *DisplayUsersWindow)
     {
@@ -126,7 +135,7 @@ public:
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         tabWidget = new QTabWidget(centralwidget);
         tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
-        tabWidget->setGeometry(QRect(0, 0, 701, 811));
+        tabWidget->setGeometry(QRect(0, 0, 601, 811));
         QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
         sizePolicy.setHorizontalStretch(100);
         sizePolicy.setVerticalStretch(0);
@@ -165,6 +174,10 @@ public:
         verticalLayout_13->setObjectName(QString::fromUtf8("verticalLayout_13"));
         nameLabel1_3 = new QLabel(formLayoutWidget);
         nameLabel1_3->setObjectName(QString::fromUtf8("nameLabel1_3"));
+        QFont font1;
+        font1.setBold(true);
+        font1.setWeight(75);
+        nameLabel1_3->setFont(font1);
 
         verticalLayout_13->addWidget(nameLabel1_3);
 
@@ -213,6 +226,7 @@ public:
         verticalLayout_14->setObjectName(QString::fromUtf8("verticalLayout_14"));
         nameLabel2_3 = new QLabel(formLayoutWidget);
         nameLabel2_3->setObjectName(QString::fromUtf8("nameLabel2_3"));
+        nameLabel2_3->setFont(font1);
 
         verticalLayout_14->addWidget(nameLabel2_3);
 
@@ -261,6 +275,7 @@ public:
         verticalLayout_15->setObjectName(QString::fromUtf8("verticalLayout_15"));
         nameLabel3_3 = new QLabel(formLayoutWidget);
         nameLabel3_3->setObjectName(QString::fromUtf8("nameLabel3_3"));
+        nameLabel3_3->setFont(font1);
 
         verticalLayout_15->addWidget(nameLabel3_3);
 
@@ -309,6 +324,7 @@ public:
         verticalLayout_16->setObjectName(QString::fromUtf8("verticalLayout_16"));
         nameLabel4_3 = new QLabel(formLayoutWidget);
         nameLabel4_3->setObjectName(QString::fromUtf8("nameLabel4_3"));
+        nameLabel4_3->setFont(font1);
 
         verticalLayout_16->addWidget(nameLabel4_3);
 
@@ -357,6 +373,7 @@ public:
         verticalLayout_17->setObjectName(QString::fromUtf8("verticalLayout_17"));
         nameLabel5_3 = new QLabel(formLayoutWidget);
         nameLabel5_3->setObjectName(QString::fromUtf8("nameLabel5_3"));
+        nameLabel5_3->setFont(font1);
 
         verticalLayout_17->addWidget(nameLabel5_3);
 
@@ -405,6 +422,7 @@ public:
         verticalLayout_18->setObjectName(QString::fromUtf8("verticalLayout_18"));
         nameLabel6_3 = new QLabel(formLayoutWidget);
         nameLabel6_3->setObjectName(QString::fromUtf8("nameLabel6_3"));
+        nameLabel6_3->setFont(font1);
 
         verticalLayout_18->addWidget(nameLabel6_3);
 
@@ -446,6 +464,7 @@ public:
 
         next_page_btn_2 = new QPushButton(formLayoutWidget);
         next_page_btn_2->setObjectName(QString::fromUtf8("next_page_btn_2"));
+        next_page_btn_2->setStyleSheet(QString::fromUtf8(""));
 
         horizontalLayout_22->addWidget(next_page_btn_2);
 
@@ -455,19 +474,25 @@ public:
         label_25 = new QLabel(tab);
         label_25->setObjectName(QString::fromUtf8("label_25"));
         label_25->setGeometry(QRect(250, 10, 91, 41));
+        QFont font2;
+        font2.setPointSize(14);
+        font2.setBold(true);
+        font2.setWeight(75);
+        label_25->setFont(font2);
         tabWidget->addTab(tab, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QString::fromUtf8("tab_2"));
         formLayoutWidget_2 = new QWidget(tab_2);
         formLayoutWidget_2->setObjectName(QString::fromUtf8("formLayoutWidget_2"));
         formLayoutWidget_2->setGeometry(QRect(10, 50, 581, 671));
-        formLayout_4 = new QFormLayout(formLayoutWidget_2);
-        formLayout_4->setObjectName(QString::fromUtf8("formLayout_4"));
-        formLayout_4->setContentsMargins(0, 0, 0, 0);
+        formLayout = new QFormLayout(formLayoutWidget_2);
+        formLayout->setObjectName(QString::fromUtf8("formLayout"));
+        formLayout->setContentsMargins(0, 0, 0, 0);
         horizontalLayout_25 = new QHBoxLayout();
         horizontalLayout_25->setObjectName(QString::fromUtf8("horizontalLayout_25"));
         label_3 = new QLabel(formLayoutWidget_2);
         label_3->setObjectName(QString::fromUtf8("label_3"));
+        label_3->setFont(font1);
 
         horizontalLayout_25->addWidget(label_3);
 
@@ -476,17 +501,18 @@ public:
         horizontalLayout_25->addItem(horizontalSpacer_6);
 
 
-        formLayout_4->setLayout(0, QFormLayout::FieldRole, horizontalLayout_25);
+        formLayout->setLayout(0, QFormLayout::FieldRole, horizontalLayout_25);
 
         nameInput = new QLineEdit(formLayoutWidget_2);
         nameInput->setObjectName(QString::fromUtf8("nameInput"));
 
-        formLayout_4->setWidget(1, QFormLayout::FieldRole, nameInput);
+        formLayout->setWidget(1, QFormLayout::FieldRole, nameInput);
 
         horizontalLayout_24 = new QHBoxLayout();
         horizontalLayout_24->setObjectName(QString::fromUtf8("horizontalLayout_24"));
         label_2 = new QLabel(formLayoutWidget_2);
         label_2->setObjectName(QString::fromUtf8("label_2"));
+        label_2->setFont(font1);
 
         horizontalLayout_24->addWidget(label_2);
 
@@ -495,17 +521,18 @@ public:
         horizontalLayout_24->addItem(horizontalSpacer_4);
 
 
-        formLayout_4->setLayout(2, QFormLayout::FieldRole, horizontalLayout_24);
+        formLayout->setLayout(2, QFormLayout::FieldRole, horizontalLayout_24);
 
         emailInput = new QLineEdit(formLayoutWidget_2);
         emailInput->setObjectName(QString::fromUtf8("emailInput"));
 
-        formLayout_4->setWidget(3, QFormLayout::FieldRole, emailInput);
+        formLayout->setWidget(3, QFormLayout::FieldRole, emailInput);
 
         horizontalLayout_23 = new QHBoxLayout();
         horizontalLayout_23->setObjectName(QString::fromUtf8("horizontalLayout_23"));
         label = new QLabel(formLayoutWidget_2);
         label->setObjectName(QString::fromUtf8("label"));
+        label->setFont(font1);
 
         horizontalLayout_23->addWidget(label);
 
@@ -514,17 +541,18 @@ public:
         horizontalLayout_23->addItem(horizontalSpacer_2);
 
 
-        formLayout_4->setLayout(4, QFormLayout::FieldRole, horizontalLayout_23);
+        formLayout->setLayout(4, QFormLayout::FieldRole, horizontalLayout_23);
 
         phoneInput = new QLineEdit(formLayoutWidget_2);
         phoneInput->setObjectName(QString::fromUtf8("phoneInput"));
 
-        formLayout_4->setWidget(5, QFormLayout::FieldRole, phoneInput);
+        formLayout->setWidget(5, QFormLayout::FieldRole, phoneInput);
 
         horizontalLayout_36 = new QHBoxLayout();
         horizontalLayout_36->setObjectName(QString::fromUtf8("horizontalLayout_36"));
         label_7 = new QLabel(formLayoutWidget_2);
         label_7->setObjectName(QString::fromUtf8("label_7"));
+        label_7->setFont(font1);
 
         horizontalLayout_36->addWidget(label_7);
 
@@ -533,17 +561,18 @@ public:
         horizontalLayout_36->addItem(horizontalSpacer_14);
 
 
-        formLayout_4->setLayout(6, QFormLayout::FieldRole, horizontalLayout_36);
+        formLayout->setLayout(6, QFormLayout::FieldRole, horizontalLayout_36);
 
         layoutForRadioBtns = new QGridLayout();
         layoutForRadioBtns->setObjectName(QString::fromUtf8("layoutForRadioBtns"));
 
-        formLayout_4->setLayout(7, QFormLayout::FieldRole, layoutForRadioBtns);
+        formLayout->setLayout(7, QFormLayout::FieldRole, layoutForRadioBtns);
 
         horizontalLayout_38 = new QHBoxLayout();
         horizontalLayout_38->setObjectName(QString::fromUtf8("horizontalLayout_38"));
         label_9 = new QLabel(formLayoutWidget_2);
         label_9->setObjectName(QString::fromUtf8("label_9"));
+        label_9->setFont(font1);
 
         horizontalLayout_38->addWidget(label_9);
 
@@ -552,16 +581,7 @@ public:
         horizontalLayout_38->addItem(horizontalSpacer_18);
 
 
-        formLayout_4->setLayout(8, QFormLayout::FieldRole, horizontalLayout_38);
-
-        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        formLayout_4->setItem(10, QFormLayout::FieldRole, verticalSpacer);
-
-        addUserBrn = new QPushButton(formLayoutWidget_2);
-        addUserBrn->setObjectName(QString::fromUtf8("addUserBrn"));
-
-        formLayout_4->setWidget(11, QFormLayout::FieldRole, addUserBrn);
+        formLayout->setLayout(8, QFormLayout::FieldRole, horizontalLayout_38);
 
         horizontalLayout_39 = new QHBoxLayout();
         horizontalLayout_39->setObjectName(QString::fromUtf8("horizontalLayout_39"));
@@ -577,17 +597,73 @@ public:
         horizontalLayout_39->addWidget(chosenPicture);
 
 
-        formLayout_4->setLayout(9, QFormLayout::FieldRole, horizontalLayout_39);
+        formLayout->setLayout(9, QFormLayout::FieldRole, horizontalLayout_39);
 
-        label_10 = new QLabel(tab_2);
-        label_10->setObjectName(QString::fromUtf8("label_10"));
-        label_10->setGeometry(QRect(270, 10, 81, 17));
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        formLayout->setItem(10, QFormLayout::FieldRole, verticalSpacer);
+
+        addUserBrn = new QPushButton(formLayoutWidget_2);
+        addUserBrn->setObjectName(QString::fromUtf8("addUserBrn"));
+
+        formLayout->setWidget(11, QFormLayout::FieldRole, addUserBrn);
+
+        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        formLayout->setItem(12, QFormLayout::FieldRole, verticalSpacer_2);
+
+        verticalSpacer_3 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        formLayout->setItem(13, QFormLayout::FieldRole, verticalSpacer_3);
+
+        horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
+        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_2->addItem(horizontalSpacer_3);
+
+        successfullyAdded = new QLabel(formLayoutWidget_2);
+        successfullyAdded->setObjectName(QString::fromUtf8("successfullyAdded"));
+        QFont font3;
+        font3.setPointSize(16);
+        font3.setBold(true);
+        font3.setWeight(75);
+        successfullyAdded->setFont(font3);
+
+        horizontalLayout_2->addWidget(successfullyAdded);
+
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_2->addItem(horizontalSpacer);
+
+
+        formLayout->setLayout(14, QFormLayout::FieldRole, horizontalLayout_2);
+
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        showUsersBtn = new QPushButton(formLayoutWidget_2);
+        showUsersBtn->setObjectName(QString::fromUtf8("showUsersBtn"));
+
+        horizontalLayout->addWidget(showUsersBtn);
+
+        addOnMoreUser = new QPushButton(formLayoutWidget_2);
+        addOnMoreUser->setObjectName(QString::fromUtf8("addOnMoreUser"));
+
+        horizontalLayout->addWidget(addOnMoreUser);
+
+
+        formLayout->setLayout(15, QFormLayout::FieldRole, horizontalLayout);
+
+        addUserLabel = new QLabel(tab_2);
+        addUserLabel->setObjectName(QString::fromUtf8("addUserLabel"));
+        addUserLabel->setGeometry(QRect(250, 10, 91, 17));
+        addUserLabel->setFont(font2);
         tabWidget->addTab(tab_2, QString());
         DisplayUsersWindow->setCentralWidget(centralwidget);
 
         retranslateUi(DisplayUsersWindow);
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(DisplayUsersWindow);
@@ -639,10 +715,13 @@ public:
         phoneInput->setPlaceholderText(QApplication::translate("DisplayUsersWindow", "+38 066 777 77 77", nullptr));
         label_7->setText(QApplication::translate("DisplayUsersWindow", "Position :", nullptr));
         label_9->setText(QApplication::translate("DisplayUsersWindow", "Photo :", nullptr));
-        addUserBrn->setText(QApplication::translate("DisplayUsersWindow", "Add User", nullptr));
         choosePictureBtn->setText(QApplication::translate("DisplayUsersWindow", "Choose Picture", nullptr));
         chosenPicture->setText(QString());
-        label_10->setText(QApplication::translate("DisplayUsersWindow", "Add User", nullptr));
+        addUserBrn->setText(QApplication::translate("DisplayUsersWindow", "Add User", nullptr));
+        successfullyAdded->setText(QApplication::translate("DisplayUsersWindow", "User added successfully!", nullptr));
+        showUsersBtn->setText(QApplication::translate("DisplayUsersWindow", "Users List", nullptr));
+        addOnMoreUser->setText(QApplication::translate("DisplayUsersWindow", "Add one more user", nullptr));
+        addUserLabel->setText(QApplication::translate("DisplayUsersWindow", "Add User", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("DisplayUsersWindow", "Add User", nullptr));
     } // retranslateUi
 
